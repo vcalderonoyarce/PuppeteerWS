@@ -1,0 +1,19 @@
+{
+  "name": "puppeteer-ws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^3.0.2",
+    "http-proxy": "^1.18.0",
+    "puppeteer": "^1.20.0",
+    "puppeteer-service": "^0.4.8"
+  }
+}
