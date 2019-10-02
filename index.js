@@ -26,9 +26,22 @@ async function createServer(WSEndPoint, host, port) {
 const main = async (callback = null) => {
   try {
     var args = [
+      '--disable-canvas-aa',
+      '--disable-2d-canvas-clip-aa',
+      '--disable-gl-drawing-for-tests',
+      '--disable-dev-shm-usage',
+      '--no-zygote',
+      '--use-gl=swiftshader',
+      '--enable-webgl',
+      '--hide-scrollbars',
+      '--mute-audio',
+      '--no-first-run',
+      '--disable-infobars',
+      '--disable-breakpad',
+
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      '--window-size=1024,768',
+      '--window-size=1200,720',
       '--disk-cache-dir=./tmp/browser-cache-disk'
     ];
     browser = await puppeteer.launch({
@@ -42,12 +55,11 @@ const main = async (callback = null) => {
     const pagesCount = (await browser.pages()).length; // just to make sure we have the same stuff on both place
     const browserWSEndpoint = await browser.wsEndpoint();
     const customWSEndpoint = await createServer(browserWSEndpoint, host, port); // create the server here
-    console.log({
-        browserWSEndpoint,
-        customWSEndpoint,
-        pagesCount
-      }
-    );
+    console.log('Servidor levantado correctamente'.bold.green);
+    console.log('ID del proceso     : '+colors.green(browser.process().pid));
+    console.log('Versión            : '+colors.green(program.version()));
+    console.log('browserWSEndpoint  : '+browserWSEndpoint.green);
+    console.log('customWSEndpoint   : '+customWSEndpoint.green);
 
   } catch (e) {
     console.log('No se pudo levantar el servicio de Puppeteer'.red);

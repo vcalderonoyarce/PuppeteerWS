@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "commander": "^3.0.2",
     "http-proxy": "^1.18.0",
     "puppeteer": "^1.20.0",
