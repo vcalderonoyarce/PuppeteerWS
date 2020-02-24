@@ -5,7 +5,11 @@ const colors = require('colors');
 
 program.version('1.0');
 
-program.option('-h, --host [string]', 'Indica el host del WS').option('-p, --port [int]', 'Indica el puerto del WS');
+program
+  .option('-h, --host [string]', 'Indica el host del WS')
+  .option('-p, --port [int]', 'Indica el puerto del WS')
+  .option('-n, --nonheadless', 'Indica si el proceso será en modo headless')
+  ;
 program.parse(process.argv);
 
 const host = typeof program.host == 'undefined' ? "0.0.0.0" : program.host;
@@ -45,7 +49,7 @@ const main = async (callback = null) => {
       '--disk-cache-dir=./tmp/browser-cache-disk'
     ];
     browser = await puppeteer.launch({
-      headless            :  true,
+      headless            :  !program.nonheadless,
       slowMo              :  50,
       args                :  args,
       ignoreHTTPSErrors   :  true,
