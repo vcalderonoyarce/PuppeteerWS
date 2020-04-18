@@ -67,6 +67,7 @@ const main = async (callback = null) => {
 
   } catch (e) {
     console.log('No se pudo levantar el servicio de Puppeteer'.red);
+    console.log(e);
   }
 };
 
