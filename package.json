@@ -13,7 +13,7 @@
   "dependencies": {
     "colors": "^1.4.0",
     "commander": "^3.0.2",
-    "http-proxy": "^1.18.0",
+    "http-proxy": "^1.18.1",
     "puppeteer": "^1.20.0",
     "puppeteer-service": "^0.4.8"
   }

@@ -30,18 +30,18 @@ async function createServer(WSEndPoint, host, port) {
 const main = async (callback = null) => {
   try {
     var args = [
-      '--disable-canvas-aa',
-      '--disable-2d-canvas-clip-aa',
-      '--disable-gl-drawing-for-tests',
-      '--disable-dev-shm-usage',
-      '--no-zygote',
-      '--use-gl=swiftshader',
-      '--enable-webgl',
-      '--hide-scrollbars',
-      '--mute-audio',
-      '--no-first-run',
-      '--disable-infobars',
-      '--disable-breakpad',
+      program.nonheadless ? null : '--disable-canvas-aa',
+      program.nonheadless ? null : '--disable-2d-canvas-clip-aa',
+      program.nonheadless ? null : '--disable-gl-drawing-for-tests',
+      program.nonheadless ? null : '--disable-dev-shm-usage',
+      program.nonheadless ? null : '--no-zygote',
+      program.nonheadless ? null : '--use-gl=swiftshader',
+      program.nonheadless ? null : '--enable-webgl',
+      program.nonheadless ? null : '--hide-scrollbars',
+      program.nonheadless ? null : '--mute-audio',
+      program.nonheadless ? null : '--no-first-run',
+      program.nonheadless ? null : '--disable-infobars',
+      program.nonheadless ? null : '--disable-breakpad',
 
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -51,7 +51,7 @@ const main = async (callback = null) => {
     browser = await puppeteer.launch({
       headless            :  !program.nonheadless,
       slowMo              :  50,
-      args                :  args,
+      args                :  args.filter(function (el) {return el != null;}),
       ignoreHTTPSErrors   :  true,
       timeout             :  0,
     });
